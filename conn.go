@@ -77,7 +77,7 @@ func insert(name string, city string) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// number of rows affected 
+	// number of rows affected
 	affectedRows, err := r.RowsAffected()
 	if err != nil {
 		log.Fatal(err)
@@ -85,8 +85,51 @@ func insert(name string, city string) {
 	}
 	fmt.Printf("statement affected  %d rows\n ", affectedRows)
 }
+
+func update(id int, name string, city string) {
+	stmt, err := db.Prepare("UPDATE   employee SET Name=? , City=? WHERE ID=?")
+
+	if err != nil {
+
+		log.Fatal()
+	}
+	r, err := stmt.Exec(name, city, 1)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// number of rows affected
+	affectedRows, err := r.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+
+	}
+	fmt.Printf("statement affected  %d rows\n ", affectedRows)
+}
+
+func delete(id int) {
+	stmt, err := db.Prepare("DELETE FROM employee WHERE ID=?")
+
+	if err != nil {
+
+		log.Fatal()
+	}
+	r, err := stmt.Exec(id)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// number of rows affected
+	affectedRows, err := r.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+
+	}
+	fmt.Printf("statement affected  %d rows\n ", affectedRows)
+}
+
 func main() {
 	dbConn()
 	fmt.Println(getAllEmployees())
-	insert("zizou ","algeria ")
+	//insert("zizou ", "algeria ")
+	//update(1, "test", "america")
+	delete(2)
 }
