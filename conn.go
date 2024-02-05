@@ -131,5 +131,6 @@ func main() {
 	fmt.Println(getAllEmployees())
 	//insert("zizou ", "algeria ")
 	//update(1, "test", "america")
-	delete(2)
+	//delete(2)
+	fmt.Println(getAllEmployees())
 }
